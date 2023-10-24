@@ -3,7 +3,7 @@ title: "Untitled"
 format: html
 ---
 
-joint : to merge data set
+join : to merge data set
 ```{r}
 #| message: false
 here::i_am("dplyr-102.Rproj")
@@ -21,4 +21,24 @@ clients <- vroom(here("data","client.csv"))
 account <- vroom(here("data","account.csv"))
 disp <- vroom(here("data","disp.csv"))
 ```
+
+## Joining data tables
+
+A collection of joining functions of the form `*_join`
+
+### Inner join
+
+```{r}
+da <- inner_join(account, disp)
+```
+here because there is only one common column, the function merges by default by that common column
+the result is a cartesian product
+
+```{r}
+cda <- inner_join(clients, da, by=join_by("client_id"), suffix=c("_income", "_bank"))
+```
+
+
+
+
 
